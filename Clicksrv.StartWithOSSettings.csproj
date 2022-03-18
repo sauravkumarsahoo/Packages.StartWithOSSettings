@@ -5,7 +5,7 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<Version>0.1.0</Version>
+		<Version>0.1.2</Version>
 		<Company>clicksrv</Company>
 		<Description>A package that helps in configuring Startup Settings for any program. Also supports configuring enabling and disabling of the entry apart from creation of Startup Entry.
 Currently supports Windows only with plans to eventually expand to other OSes.</Description>
