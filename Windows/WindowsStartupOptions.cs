@@ -4,8 +4,8 @@ namespace Clicksrv.StartWithOSSettings.Windows
 {
     public sealed class WindowsStartupOptions : IStartupOptions
     {
-        private const byte EnableFirstByte = 3;
-        private const byte DisableFirstByte = 2;
+        private const byte EnabledFirstByte = 3;
+        private const byte DisabledFirstByte = 2;
 
         private const string StartupPath = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
         private const string EnableStartupPath = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\Run";
@@ -34,6 +34,7 @@ namespace Clicksrv.StartWithOSSettings.Windows
 #pragma warning disable CA1416 // Validate platform compatibility
 
         public RegistryKey StartupKey(bool writable) => (Global ? Registry.LocalMachine : Registry.CurrentUser).OpenSubKey(StartupPath, writable)!;
+
         public bool Created
         {
             get
@@ -42,12 +43,14 @@ namespace Clicksrv.StartWithOSSettings.Windows
                 return AnyKeyMatches(startupKey);
             }
         }
+
         public void CreateStartupEntry()
         {
             using var startupKey = StartupKey(true)!;
             if (!AnyKeyMatches(startupKey))
                 startupKey.SetValue(Name, $"\"{Address}\"{string.Join(" --", Arguments)}");
         }
+
         public void DeleteStartupEntry()
         {
             using var startupKey = StartupKey(true)!;
@@ -61,6 +64,7 @@ namespace Clicksrv.StartWithOSSettings.Windows
 
 
         public RegistryKey EnableStartupKey(bool writable) => (Global ? Registry.LocalMachine : Registry.CurrentUser).OpenSubKey(EnableStartupPath, writable)!;
+
         public bool Enabled
         {
             get
@@ -69,20 +73,23 @@ namespace Clicksrv.StartWithOSSettings.Windows
                 return AnyKeyMatches(enableStartupKey);
             }
         }
+
         public void Enable()
         {
             CreateStartupEntry();
 
             using var enableStartupKey = EnableStartupKey(true)!;
             if (!AnyKeyMatches(enableStartupKey))
-                enableStartupKey.SetValue(Name, EnableFirstByte, RegistryValueKind.Binary);
+                enableStartupKey.SetValue(Name, EnabledFirstByte, RegistryValueKind.Binary);
         }
+
         public void Disable()
         {
             using var enableStartupKey = EnableStartupKey(true)!;
             if (AnyKeyMatches(enableStartupKey))
-                enableStartupKey.SetValue(Name, DisableFirstByte, RegistryValueKind.Binary);
+                enableStartupKey.SetValue(Name, DisabledFirstByte, RegistryValueKind.Binary);
         }
+
 
         private bool AnyKeyMatches(RegistryKey startupKey) => startupKey.GetValueNames().Any(x => x.Equals(Name, StringComparison.Ordinal));
 
