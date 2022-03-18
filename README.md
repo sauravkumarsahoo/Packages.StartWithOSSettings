@@ -1,0 +1,1 @@
+Clicksrv.StartWithOSSettings
