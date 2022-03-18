@@ -13,7 +13,7 @@ Currently supports Windows only with plans to eventually expand to other OSes.</
 		<RepositoryUrl>https://github.com/clicksrv/StartWithOSSettings</RepositoryUrl>
 		<RepositoryType>git</RepositoryType>
 		<PackageTags>startup;os;boot;start-up;windows;manage startup;configure startup;start with windows;start on boot;start with os</PackageTags>
-		<PackageLicenseExpression>https://opensource.org/licenses/Apache-2.0</PackageLicenseExpression>
+		<PackageLicenseExpression>Apache-2.0</PackageLicenseExpression>
 		
 	</PropertyGroup>
 
