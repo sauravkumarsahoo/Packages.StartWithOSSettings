@@ -1,5 +1,6 @@
 ﻿using Microsoft.Win32;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace Clicksrv.StartWithOSSettings.Windows
 {
@@ -12,6 +13,8 @@ namespace Clicksrv.StartWithOSSettings.Windows
 
         private static readonly byte[] EnabledDefaultValue = new byte[] { EnabledFirstByte, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         private static readonly byte[] DisabledDefaultValue = new byte[] { DisabledFirstByte, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+
+        private static readonly Regex argRegex = new(@"--(\b[a-zA-Z0-9=]*)\b");
 
         private const string StartupPath = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
         private const string EnableStartupPath = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\Run";
@@ -28,6 +31,36 @@ namespace Clicksrv.StartWithOSSettings.Windows
             Address = address;
             Arguments = arguments;
             Global = global;
+        }
+
+        public string? GetSavedAddress()
+        {
+            using var key = StartupKey(false);
+            var value = (string?)key.GetValue(Name);
+
+            if (string.IsNullOrWhiteSpace(value))
+                return null;
+
+            var lastColon = value!.IndexOf('"', 1);
+
+            return lastColon < 0 
+                ? value!.Substring(1, value!.IndexOf("exe", 0) + 3) 
+                : value!.Substring(1, lastColon - 1);
+        }
+
+        public string[] GetSavedArguments()
+        {
+            using var key = StartupKey(false);
+            var value = (string?)key.GetValue(Name);
+
+            if (string.IsNullOrWhiteSpace(value))
+                return Array.Empty<string>();
+
+            var matches = argRegex.Matches(value);
+            if (matches.Count == 0)
+                return Array.Empty<string>();
+
+            return matches.Select(x=> x.Groups[1].Value).ToArray();
         }
 
         public bool IsPlatformSupported
@@ -71,7 +104,7 @@ namespace Clicksrv.StartWithOSSettings.Windows
         public string? GetStartupEntryValue()
         {
             using var startupKey = StartupKey(true)!;
-            return (string?) startupKey.GetValue(Name);
+            return (string?)startupKey.GetValue(Name);
         }
 
         public void DeleteStartupEntry()
