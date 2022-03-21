@@ -1,5 +1,4 @@
 ﻿using Microsoft.Win32;
-using System.Text;
 using System.Text.RegularExpressions;
 
 namespace Clicksrv.StartWithOSSettings.Windows
@@ -43,8 +42,8 @@ namespace Clicksrv.StartWithOSSettings.Windows
 
             var lastColon = value!.IndexOf('"', 1);
 
-            return lastColon < 0 
-                ? value!.Substring(1, value!.IndexOf("exe", 0) + 3) 
+            return lastColon < 0
+                ? value!.Substring(1, value!.IndexOf("exe", 0) + 3)
                 : value!.Substring(1, lastColon - 1);
         }
 
@@ -60,7 +59,7 @@ namespace Clicksrv.StartWithOSSettings.Windows
             if (matches.Count == 0)
                 return Array.Empty<string>();
 
-            return matches.Select(x=> x.Groups[1].Value).ToArray();
+            return matches.Select(x => x.Groups[1].Value).ToArray();
         }
 
         public bool IsPlatformSupported

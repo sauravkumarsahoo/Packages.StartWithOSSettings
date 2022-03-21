@@ -18,5 +18,7 @@
         bool Enabled { get; }
         void Enable();
         void Disable();
+        string[] GetSavedArguments();
+        string? GetSavedAddress();
     }
 }
