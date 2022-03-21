@@ -18,6 +18,7 @@
 		<PackageLicenseExpression>MIT</PackageLicenseExpression>
 		<IncludeSymbols>true</IncludeSymbols>
 		<SymbolPackageFormat>snupkg</SymbolPackageFormat>
+		<PackageIconUrl>https://clicksrv.github.io/clicksrv64.png</PackageIconUrl>
 	</PropertyGroup>
 
 	<ItemGroup>
