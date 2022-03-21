@@ -21,7 +21,7 @@ jobs:
         uses: clicksrv/publish-nuget@v2
         with:
           # Filepath of the project to be packaged, relative to root of repository
-          PROJECT_FILE_PATH: src/Clicksrv.StartWithOSSettings.csproj
+          PROJECT_FILE_PATH: Clicksrv.StartWithOSSettings.csproj
 
           TEST_PROJECT_FILE_PATH: test/Clicksrv.StartWithOSSettings.Tests.csproj
           
@@ -50,4 +50,4 @@ jobs:
           NUGET_SOURCE: https://api.nuget.org
 
           # Flag to toggle pushing symbols along with nuget package to the server, disabled by default
-          # INCLUDE_SYMBOLS: false
+          INCLUDE_SYMBOLS: true
