@@ -22,6 +22,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Compile Remove="test\**" />
+	  <EmbeddedResource Remove="test\**" />
+	  <None Remove="test\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<None Update="README.md">
 			<Pack>True</Pack>
 			<PackagePath>\</PackagePath>
