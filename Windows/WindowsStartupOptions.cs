@@ -7,8 +7,8 @@ namespace Clicksrv.StartWithOSSettings.Windows
 
     public class WindowsStartupOptions : IStartupOptions
     {
-        private const byte EnabledFirstByte = 3;
-        private const byte DisabledFirstByte = 2;
+        private const byte EnabledFirstByte = 2;
+        private const byte DisabledFirstByte = 3;
 
         private static readonly byte[] EnabledDefaultValue = new byte[] { EnabledFirstByte, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
         private static readonly byte[] DisabledDefaultValue = new byte[] { DisabledFirstByte, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
