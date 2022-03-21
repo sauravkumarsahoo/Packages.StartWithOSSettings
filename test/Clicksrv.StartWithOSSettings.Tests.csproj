@@ -16,7 +16,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Clicksrv.StartWithOSSettings\src\Clicksrv.StartWithOSSettings.csproj" />
+		<ProjectReference Include="..\src\Clicksrv.StartWithOSSettings.csproj" />
 	</ItemGroup>
 
 </Project>
