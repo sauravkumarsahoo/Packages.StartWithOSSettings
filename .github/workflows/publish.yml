@@ -12,7 +12,7 @@ jobs:
         run: nuget install NUnit.ConsoleRunner -Version 3.15.0 -DirectDownload -OutputDirectory .
         
       - name: Run UnitTests
-        run: ./NUnit.ConsoleRunner.3.15.0/tools/nunit3-console.exe Clicksrv.StartWithOSSettings.Test.dll
+        run: ./NUnit.ConsoleRunner.3.15.0/tools/nunit3-console.exe test/Clicksrv.StartWithOSSettings.Test.dll
 
   publish:
     name: build, pack & publish
