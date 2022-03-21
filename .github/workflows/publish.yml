@@ -18,7 +18,7 @@ jobs:
       # Publish
       - name: publish on version change
         id: publish_nuget
-        uses: clicksrv/test-and-publish-nuget@v2
+        uses: clicksrv/publish-nuget@v2
         with:
           # Filepath of the project to be packaged, relative to root of repository
           PROJECT_FILE_PATH: Clicksrv.StartWithOSSettings.csproj
