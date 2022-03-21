@@ -35,5 +35,8 @@ namespace Clicksrv.StartWithOSSettings
         public void Disable() => _options.Disable();
         public void Enable() => _options.Enable();
 
+        public string[] GetSavedArguments() => _options.GetSavedArguments();
+
+        public string? GetSavedAddress() => _options.GetSavedAddress();
     }
 }
