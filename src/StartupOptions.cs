@@ -28,10 +28,12 @@ namespace Clicksrv.StartWithOSSettings
 
         public bool Created { get => _options.Created; }
         public void CreateStartupEntry() => _options.CreateStartupEntry();
+        public string? GetStartupEntryValue() => _options.GetStartupEntryValue();
         public void DeleteStartupEntry() => _options.DeleteStartupEntry();
 
         public bool Enabled { get => _options.Enabled; }
         public void Disable() => _options.Disable();
         public void Enable() => _options.Enable();
+
     }
 }

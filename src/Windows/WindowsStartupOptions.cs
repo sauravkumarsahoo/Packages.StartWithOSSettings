@@ -15,6 +15,7 @@ namespace Clicksrv.StartWithOSSettings.Windows
 
         private const string StartupPath = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Run";
         private const string EnableStartupPath = @"SOFTWARE\Microsoft\Windows\CurrentVersion\Explorer\StartupApproved\Run";
+        private const string ArgPrefix = " --";
 
         public string Name { get; init; }
         public string Address { get; init; }
@@ -61,13 +62,16 @@ namespace Clicksrv.StartWithOSSettings.Windows
             using var enableStartupKey = EnableStartupKey(true)!;
 
             if (startupKey.DoesntHaveName(Name))
-                startupKey.SetValue(Name, $"\"{Address}\"{string.Join(" --", Arguments)}");
+                startupKey.SetValue(Name, $"\"{Address}\"{(Arguments.Any() ? ArgPrefix : string.Empty)}{string.Join(ArgPrefix, Arguments)}");
 
             if (enableStartupKey.DoesntHaveName(Name))
-            {
-
                 enableStartupKey.SetValue(Name, EnabledDefaultValue, RegistryValueKind.Binary);
-            }
+        }
+
+        public string? GetStartupEntryValue()
+        {
+            using var startupKey = StartupKey(true)!;
+            return (string?) startupKey.GetValue(Name);
         }
 
         public void DeleteStartupEntry()

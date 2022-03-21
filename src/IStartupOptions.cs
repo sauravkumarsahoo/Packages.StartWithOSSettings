@@ -12,6 +12,7 @@
 
         bool Created { get; }
         void CreateStartupEntry();
+        string? GetStartupEntryValue();
         void DeleteStartupEntry();
 
         bool Enabled { get; }

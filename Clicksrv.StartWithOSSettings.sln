@@ -9,12 +9,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "publish", "publish", "{0B0F
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{C9A89760-951B-4221-BD6B-E7942BEA0073}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{3E930EE1-3250-4058-A84B-EC6B51464D86}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Clicksrv.StartWithOSSettings", "src\Clicksrv.StartWithOSSettings.csproj", "{51DE2004-B56A-44A4-A3F4-E98D47D1029D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Clicksrv.StartWithOSSettings.Tests", "..\Clicksrv.StartWithOS.Tests\Clicksrv.StartWithOSSettings.Tests.csproj", "{C54A2917-28A0-472A-AD70-4C366DF218B4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Clicksrv.StartWithOSSettings.Tests", "..\Clicksrv.StartWithOS.Tests\Clicksrv.StartWithOSSettings.Tests.csproj", "{C54A2917-28A0-472A-AD70-4C366DF218B4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
