@@ -16,6 +16,8 @@ Instantiate `StartupOptions` from `Clicksrv.StartWithOSSettings`. An example pie
 
 `StartupOptions` is an auto-platform class that creates the required instance underneath based on the execution platform. User can also use specific classes like `WindowsStartupOptions` to force a particular platform.
 
+An example implementation with usage [here](https://github.com/clicksrv/HIRD/blob/master/server/src/HIRD/AppSettings.cs).
+
 ### Release Notes
 
 > <b><i>Roadmap</b></i>
