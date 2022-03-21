@@ -19,22 +19,24 @@ Instantiate `StartupOptions` from `Clicksrv.StartWithOSSettings`. An example pie
 ### Release Notes
 
 > <b><i>Roadmap</b></i>
+> - Test for Admin mode
 > - Add Support for Unix Machines
 > - Add Support for other Operating Systems supported by .NET.
 > - Expand compatibility to older versions of .NET.
 > - More to come...
 
-#### 0.1.x
-- Initial Release, buggy, do not use
-
-#### 0.2
+#### 0.2.0
 - Fixes for Windows Startup
 - Restructure to src and test
 - Dev tested for use with User Level Startup, testing for Machine Level pending
 - Add Unit Tests
 - Included symbols for debugging by projects choosing to debug this package
 
+> <b><i>Known Issues</b></i>
+> Admin Mode is currently untested
 
+#### 0.1.x
+- Initial Release, buggy, do not use
 
 ## Contribution
 Create a PR with details regarding what is being added and with what purpose. I'll be happy to review and merge it with the codebase if it suits the requirement.
