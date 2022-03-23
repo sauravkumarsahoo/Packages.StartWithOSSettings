@@ -21,9 +21,9 @@ jobs:
         uses: clicksrv/publish-nuget@v2
         with:
           # Filepath of the project to be packaged, relative to root of repository
-          PROJECT_FILE_PATH: Clicksrv.StartWithOSSettings.csproj
+          PROJECT_FILE_PATH: Clicksrv.Packages.StartWithOSSettings.csproj
 
-          TEST_PROJECT_FILE_PATH: test/Clicksrv.StartWithOSSettings.Tests.csproj
+          TEST_PROJECT_FILE_PATH: test/Clicksrv.Packages.StartWithOSSettings.Tests.csproj
           
           # NuGet package id, used for version detection & defaults to project name
           # PACKAGE_NAME: Core
