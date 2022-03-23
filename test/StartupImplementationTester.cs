@@ -1,7 +1,7 @@
 ﻿using Ardalis.GuardClauses;
 using NUnit.Framework.Interfaces;
 
-namespace Clicksrv.StartWithOSSettings.Tests
+namespace Clicksrv.Packages.StartWithOSSettings.Tests
 {
     public abstract class StartupImplementationTester
     {
@@ -34,7 +34,7 @@ namespace Clicksrv.StartWithOSSettings.Tests
             => Assert.False(StartupOptions!.Enabled);
 
         [Test, Order(3)]
-        public void Create() 
+        public void Create()
             => Assert.DoesNotThrow(() => StartupOptions!.CreateStartupEntry());
 
         [Test, Order(4)]

@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace Clicksrv.StartWithOSSettings.Tests
+namespace Clicksrv.Packages.StartWithOSSettings.Tests
 {
     public class WindowsStartupImplementationTester : StartupImplementationTester
     {
