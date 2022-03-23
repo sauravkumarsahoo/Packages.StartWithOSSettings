@@ -1,6 +1,5 @@
-﻿namespace Clicksrv.StartWithOSSettings
+﻿namespace Clicksrv.Packages.StartWithOSSettings
 {
-    [Obsolete("Use package 'Clicksrv.Packages.StartWithOSSettings' instead, current package will no longer be updated.")]
     public interface IStartupOptions
     {
         bool IsPlatformSupported { get; }

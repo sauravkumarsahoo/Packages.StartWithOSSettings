@@ -1,10 +1,10 @@
 ﻿using Microsoft.Win32;
 using System.Text.RegularExpressions;
 
-namespace Clicksrv.StartWithOSSettings.Windows
+namespace Clicksrv.Packages.StartWithOSSettings.Windows
 {
 #pragma warning disable CA1416 // Validate platform compatibility
-    [Obsolete("Use package 'Clicksrv.Packages.StartWithOSSettings.Windows' instead, current package will no longer be updated.")]
+
     public class WindowsStartupOptions : IStartupOptions
     {
         private const byte EnabledFirstByte = 2;

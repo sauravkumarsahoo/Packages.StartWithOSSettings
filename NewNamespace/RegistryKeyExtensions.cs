@@ -1,6 +1,6 @@
 ﻿using Microsoft.Win32;
 #pragma warning disable CA1416 // Validate platform compatibility
-namespace Clicksrv.StartWithOSSettings.Windows
+namespace Clicksrv.Packages.StartWithOSSettings
 {
     internal static class RegistryKeyExtensions
     {

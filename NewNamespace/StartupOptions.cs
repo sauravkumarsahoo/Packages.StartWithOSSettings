@@ -1,8 +1,7 @@
-﻿using Clicksrv.StartWithOSSettings.Windows;
+﻿using Clicksrv.Packages.StartWithOSSettings.Windows;
 
-namespace Clicksrv.StartWithOSSettings
+namespace Clicksrv.Packages.StartWithOSSettings
 {
-    [Obsolete("Use package 'Clicksrv.Packages.StartWithOSSettings' instead, current package will no longer be updated.")]
     public sealed class StartupOptions : IStartupOptions
     {
         private IStartupOptions _options;
