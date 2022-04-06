@@ -15,6 +15,13 @@ jobs:
       #   with:
       #     dotnet-version: 3.1.200
 
+      - name: Prepare Keystore
+        id: write_file
+        uses: timheuer/base64-to-file@v1.1
+        with:
+          fileName: 'signingcert.cer'
+          fileDir: '.'
+          encodedString: ${{ secrets.SIGNING_CERT }}
       # Publish
       - name: publish on version change
         id: publish_nuget
@@ -51,3 +58,5 @@ jobs:
 
           # Flag to toggle pushing symbols along with nuget package to the server, disabled by default
           INCLUDE_SYMBOLS: true
+          
+          SIGNING_CERT_FILE_NAME: signingcert.cer
