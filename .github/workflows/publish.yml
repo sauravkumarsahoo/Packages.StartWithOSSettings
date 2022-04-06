@@ -1,62 +1,42 @@
 name: publish to nuget
+
 on:
   push:
     branches:
-      - master # Default release branch
+      - master
+
 jobs:
   publish:
     name: build, pack & publish
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      # - name: Setup dotnet
-      #   uses: actions/setup-dotnet@v1
-      #   with:
-      #     dotnet-version: 3.1.200
-
-      - name: Prepare Keystore
+      - name: Prepare Certificate
         id: write_file
         uses: timheuer/base64-to-file@v1.1
         with:
           fileName: 'signingcert.cer'
           fileDir: '.'
           encodedString: ${{ secrets.SIGNING_CERT }}
-      # Publish
-      - name: publish on version change
-        id: publish_nuget
-        uses: clicksrv/publish-nuget@v2
+
+      - name: Setup .NET Core
+        uses: actions/setup-dotnet@v2
         with:
-          # Filepath of the project to be packaged, relative to root of repository
-          PROJECT_FILE_PATH: Clicksrv.Packages.StartWithOSSettings.csproj
-
-          TEST_PROJECT_FILE_PATH: test/Clicksrv.Packages.StartWithOSSettings.Tests.csproj
-          
-          # NuGet package id, used for version detection & defaults to project name
-          # PACKAGE_NAME: Core
-          
-          # Filepath with version info, relative to root of repository & defaults to PROJECT_FILE_PATH
-          # VERSION_FILE_PATH: Directory.Build.props
-
-          # Regex pattern to extract version info in a capturing group
-          VERSION_REGEX: ^\s*<Version>(.*)<\/Version>\s*$
-          
-          # Useful with external providers like Nerdbank.GitVersioning, ignores VERSION_FILE_PATH & VERSION_REGEX
-          # VERSION_STATIC: 1.0.0
-
-          # Flag to toggle git tagging, enabled by default
-          TAG_COMMIT: true
-
-          # Format of the git tag, [*] gets replaced with actual version
-          TAG_FORMAT: v*
-
-          # API key to authenticate with NuGet server
-          NUGET_KEY: ${{secrets.NUGET_API_KEY}}
-
-          # NuGet server uri hosting the packages, defaults to https://api.nuget.org
-          NUGET_SOURCE: https://api.nuget.org
-
-          # Flag to toggle pushing symbols along with nuget package to the server, disabled by default
-          INCLUDE_SYMBOLS: true
-          
-          SIGNING_CERT_FILE_NAME: signingcert.cer
+          dotnet-version: '6.0.x'
+          source-url: https://nuget.pkg.github.com/${{ github.repository_owner }}/index.json
+        env:
+          NUGET_AUTH_TOKEN: '%NUGET_AUTH_TOKEN%'
+      - name: Install dependencies
+        run: dotnet restore
+      - name: Build
+        run: dotnet build --configuration Release --no-restore
+      - name: Pack
+        run: dotnet pack --no-build --configuration Release
+      - name: PushNuget
+        run: dotnet nuget push **/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
+      - name: PushGithub
+        # The github token is automatically being pulled from the workflow
+        run: dotnet nuget push **/*.nupkg --no-symbols --skip-duplicate
+        env:
+          NUGET_AUTH_TOKEN: ${{ github.token }}
