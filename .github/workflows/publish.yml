@@ -40,8 +40,8 @@ jobs:
           password: '${{ secrets.SIGNING_CERT_PASS }}'
           certificatesha1: '${{ secrets.SIGNING_CERT_HASH }}'
           certificatename: '${{ secrets.SIGNING_CERT_NAME }}'
-          folder: 'files'
-          recursive: true
+          folder: '\bin\Release'
+          recursive: false
       - name: PushNuget
         run: dotnet nuget push **/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
       - name: PushGithub
