@@ -8,7 +8,7 @@ on:
 jobs:
   publish:
     name: build, pack & publish
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
 
@@ -33,6 +33,15 @@ jobs:
         run: dotnet build --configuration Release --no-restore
       - name: Pack
         run: dotnet pack --no-build --configuration Release
+      - name: Sign
+        uses: DanaBear/code-sign-action@v4
+        with:
+          certificate: '${{ secrets.SIGNING_CERT }}'
+          password: '${{ secrets.SIGNING_CERT_PASS }}'
+          certificatesha1: '${{ secrets.SIGNING_CERT_HASH }}'
+          certificatename: '${{ secrets.SIGNING_CERT_NAME }}'
+          folder: 'files'
+          recursive: true
       - name: PushNuget
         run: dotnet nuget push **/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGET_API_KEY}} --skip-duplicate
       - name: PushGithub
