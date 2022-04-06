@@ -35,7 +35,7 @@ jobs:
       - name: Pack
         run: dotnet pack --no-build --configuration Release
       - name: Sign
-        uses: clicksrv/code-sign-action@v4-clicksrv
+        uses: clicksrv/code-sign-action@v5
         with:
           certificate: '${{ secrets.SIGNING_CERT }}'
           password: '${{ secrets.SIGNING_CERT_PASS }}'
