@@ -34,7 +34,7 @@ jobs:
       - name: Pack
         run: dotnet pack --no-build --configuration Release
       - name: Sign
-        uses: DanaBear/code-sign-action@v4
+        uses: clicksrv/code-sign-action@v4
         with:
           certificate: '${{ secrets.SIGNING_CERT }}'
           password: '${{ secrets.SIGNING_CERT_PASS }}'
